@@ -17,9 +17,14 @@ const sampleDataForPhotoListItem = {
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
+const photos = new Array(3);
+for (const item in photos) {
+  photos[item] = <PhotoListItem photoDetails={sampleDataForPhotoListItem} />
+}
+
 const App = () => (
   <div className="App">
-    <PhotoListItem photoDetails={sampleDataForPhotoListItem} />
+    {...photos}
   </div>
 )
 
