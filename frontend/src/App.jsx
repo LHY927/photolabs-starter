@@ -19,7 +19,7 @@ const sampleDataForPhotoListItem = {
 
 const App = () => (
   <div className="App">
-    <PhotoListItem data={sampleDataForPhotoListItem} />
+    <PhotoListItem photoDetails={sampleDataForPhotoListItem} />
   </div>
 )
 
