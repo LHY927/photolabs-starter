@@ -6,7 +6,7 @@ import PhotoFavButton from "../components/PhotoFavButton.jsx";
 const PhotoListItem = (props) => {
   const handleClick = () => {
     console.log(props.photoDetails.id);
-    props.setShowModal(props.photoDetails.id);
+    props.setSelectedPhotoId(props.photoDetails);
   }
 
   return (
@@ -15,8 +15,8 @@ const PhotoListItem = (props) => {
       <img className="photo-list__image" onClick={handleClick} src={props.photoDetails.urls.regular} />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={props.photoDetails.user.profile} />
-        <div className="photo-list__user-info">{props.photoDetails.location.city}, {props.photoDetails.location.country}</div>
-        <div className="photo-list__user-location">{props.photoDetails.user.username}</div>
+        <div className="photo-list__user-location">{props.photoDetails.location.city}, {props.photoDetails.location.country}</div>
+        <div className="photo-list__user-info">{props.photoDetails.user.username}</div>
       </div>
 
     </div>

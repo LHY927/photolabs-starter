@@ -8,6 +8,9 @@ function PhotoFavButton(props) {
   const [selected, setSelected] = useState(false);
   const { favourites, setFavourite } = useContext(FavContext);
   const handleClick = () => {
+    if (props.id < 0) {
+      return;
+    }
     setSelected(!selected);
     if (!selected) {
       // If currently not selected, add the id to favourites

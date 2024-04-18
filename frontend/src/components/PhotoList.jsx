@@ -5,7 +5,7 @@ import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = (props) => {
   const photos = props.photos.map((photo, index) =>
-    <PhotoListItem key={photo.id} photoDetails={photo} setShowModal={props.setShowModal} />
+    <PhotoListItem key={photo.id} photoDetails={photo} setSelectedPhotoId={props.setSelectedPhotoId} />
   );
 
   return (
