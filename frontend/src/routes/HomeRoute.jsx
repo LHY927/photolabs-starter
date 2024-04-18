@@ -9,13 +9,13 @@ import topics from 'mocks/topics';
 
 export const FavContext = React.createContext();
 
-const HomeRoute = () => {
+const HomeRoute = (props) => {
   const [favourites, setFavourite] = useState([]);
   return (
     <div className="home-route">
       <FavContext.Provider value={{ favourites: favourites, setFavourite: setFavourite }}>
         < TopNavigation topics={topics} favourites={favourites} />
-        < PhotoList photos={photos} />
+        < PhotoList photos={photos} setShowModal={props.setShowModal} />
       </FavContext.Provider>
     </div >
   );
