@@ -1,15 +1,12 @@
 // frontend/src/App.jsx
 import React from 'react';
 
-import PhotoList from './components/PhotoList';
-import TopicList from 'components/TopicList';
-import TopNavigation from 'components/TopNavigationBar';
 import './App.scss';
+import HomeRoute from 'routes/HomeRoute';
 
 const App = () => (
   < div className="App" >
-    < TopNavigation />
-    < PhotoList />
+    < HomeRoute />
   </div >
 )
 
