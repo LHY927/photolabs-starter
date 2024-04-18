@@ -7,12 +7,16 @@ import TopNavigation from 'components/TopNavigationBar';
 import photos from 'mocks/photos';
 import topics from 'mocks/topics';
 
+export const FavContext = React.createContext(null);
+
 const HomeRoute = () => {
   return (
     <div className="home-route">
-      < TopNavigation topics={topics} />
-      < PhotoList photos={photos} />
-    </div>
+      <FavContext.Provider value={{ fav: fav, setFav: setFav }}>
+        < TopNavigation topics={topics} />
+        < PhotoList photos={photos} />
+      </FavContext.Provider>
+    </div >
   );
 };
 

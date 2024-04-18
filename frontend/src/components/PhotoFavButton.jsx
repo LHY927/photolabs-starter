@@ -1,10 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
+import { FavContext } from 'routes/HomeRoute';
 
 function PhotoFavButton() {
   const [selected, setSelected] = useState(false);
+  const { fav, setFav } = useContext(FavContext)
 
   const handleClick = () => {
     setSelected(!selected);
