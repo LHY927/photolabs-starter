@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 
 import '../styles/HomeRoute.scss';
 
@@ -10,11 +10,12 @@ import topics from 'mocks/topics';
 export const FavContext = React.createContext(null);
 
 const HomeRoute = () => {
+  const [favourites, toggleFavourite] = useState([]);
   return (
     <div className="home-route">
-      <FavContext.Provider value={{ fav: fav, setFav: setFav }}>
+      <FavContext.Provider value={{ favourites: favourites, toggleFavourite: toggleFavourite }}>
         < TopNavigation topics={topics} />
-        < PhotoList photos={photos} />
+        < PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite} />
       </FavContext.Provider>
     </div >
   );

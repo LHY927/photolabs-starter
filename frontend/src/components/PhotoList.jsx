@@ -5,7 +5,7 @@ import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = (props) => {
   const photos = props.photos.map((photo, index) =>
-    <PhotoListItem key={index} photoDetails={photo} />
+    <PhotoListItem key={photo.id} photoDetails={photo} favourites={props.favourites} toggleFavourite={props.toggleFavourite} />
   );
 
   return (
