@@ -14,7 +14,7 @@ const HomeRoute = () => {
   return (
     <div className="home-route">
       <FavContext.Provider value={{ favourites: favourites, setFavourite: setFavourite }}>
-        < TopNavigation topics={topics} />
+        < TopNavigation topics={topics} favourites={favourites} />
         < PhotoList photos={photos} />
       </FavContext.Provider>
     </div >

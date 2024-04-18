@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 
 import '../styles/TopNavigationBar.scss'
 import TopicList from './TopicList';
@@ -9,7 +9,7 @@ const TopNavigation = (props) => {
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       < TopicList topics={props.topics} />
-      < FavBadge />
+      < FavBadge isFavPhotoExist={props.favourites.length > 0} />
     </div>
   )
 }
