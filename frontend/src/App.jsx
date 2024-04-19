@@ -6,7 +6,7 @@ import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 const App = () => {
-  const [selectedPhotoId, setSelectedPhotoId] = useState({
+  const [selectedPhoto, setSelectedPhoto] = useState({
     "id": "-1",
     "location": {
       "city": "Montreal",
@@ -26,8 +26,8 @@ const App = () => {
 
   return (
     < div className="App" >
-      < HomeRoute setSelectedPhotoId={setSelectedPhotoId} />
-      < PhotoDetailsModal setSelectedPhotoId={setSelectedPhotoId} selectedPhotoId={selectedPhotoId} />
+      < HomeRoute setSelectedPhoto={setSelectedPhoto} />
+      < PhotoDetailsModal setSelectedPhoto={setSelectedPhoto} selectedPhoto={selectedPhoto} />
     </div >
   )
 }

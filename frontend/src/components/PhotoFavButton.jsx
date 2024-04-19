@@ -6,7 +6,6 @@ import { FavContext } from 'routes/HomeRoute';
 
 function PhotoFavButton(props) {
   const [selected, setSelected] = useState(false);
-  const { favourites, setFavourite } = useContext(FavContext);
   const handleClick = () => {
     if (props.id < 0) {
       return;
@@ -14,10 +13,10 @@ function PhotoFavButton(props) {
     setSelected(!selected);
     if (!selected) {
       // If currently not selected, add the id to favourites
-      setFavourite([...favourites, props.id]);
+      props.setFavourite([...props.favourites, props.id]);
     } else {
       // If currently selected, remove the id from favourites
-      setFavourite(favourites.filter(item => item !== props.id));
+      props.setFavourite(props.favourites.filter(item => item !== props.id));
     }
   }
   return (

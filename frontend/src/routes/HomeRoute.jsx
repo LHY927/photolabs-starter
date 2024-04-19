@@ -15,7 +15,7 @@ const HomeRoute = (props) => {
     <div className="home-route">
       <FavContext.Provider value={{ favourites: favourites, setFavourite: setFavourite }}>
         < TopNavigation topics={topics} favourites={favourites} />
-        < PhotoList photos={photos} setSelectedPhotoId={props.setSelectedPhotoId} />
+        < PhotoList photos={photos} setSelectedPhoto={props.setSelectedPhoto} favourites={favourites} setFavourite={setFavourite} />
       </FavContext.Provider>
     </div >
   );

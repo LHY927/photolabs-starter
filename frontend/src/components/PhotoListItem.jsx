@@ -6,12 +6,12 @@ import PhotoFavButton from "../components/PhotoFavButton.jsx";
 const PhotoListItem = (props) => {
   const handleClick = () => {
     console.log(props.photoDetails.id);
-    props.setSelectedPhotoId(props.photoDetails);
+    props.setSelectedPhoto(props.photoDetails);
   }
 
   return (
     <div className="photo-list__item" >
-      <PhotoFavButton id={props.photoDetails.id} />
+      <PhotoFavButton id={props.photoDetails.id} favourites={props.favourites} setFavourite={props.setFavourite} />
       <img className="photo-list__image" onClick={handleClick} src={props.photoDetails.urls.regular} />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={props.photoDetails.user.profile} />
