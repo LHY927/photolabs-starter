@@ -6,6 +6,14 @@ import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 const App = () => {
+  const {
+    state,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onLoadTopic,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
+
   const [favourites, setFavourite] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState({
     "id": "-1",
