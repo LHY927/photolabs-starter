@@ -6,6 +6,7 @@ import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 const App = () => {
+  const [favourites, setFavourite] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState({
     "id": "-1",
     "location": {
@@ -26,8 +27,8 @@ const App = () => {
 
   return (
     < div className="App" >
-      < HomeRoute setSelectedPhoto={setSelectedPhoto} />
-      < PhotoDetailsModal setSelectedPhoto={setSelectedPhoto} selectedPhoto={selectedPhoto} />
+      < HomeRoute setSelectedPhoto={setSelectedPhoto} favourites={favourites} setFavourite={setFavourite} />
+      < PhotoDetailsModal setSelectedPhoto={setSelectedPhoto} selectedPhoto={selectedPhoto} favourites={favourites} setFavourite={setFavourite} />
     </div >
   )
 }

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
@@ -28,21 +28,22 @@ let similarPhotosList = [{
 
 const PhotoDetailsModal = (props) => {
   const handleClickClose = () => {
+    //On close, set a -1 to the props to hide the modal
     props.setSelectedPhoto({
       "id": "-1",
       "location": {
-        "city": "Montreal",
-        "country": "Canada"
+        "city": "",
+        "country": ""
       },
       "urls": {
-        "full": `${process.env.PUBLIC_URL}/Image-1-Full.jpeg`,
-        "regular": `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`
+        "full": ``,
+        "regular": ``
       },
       "user": {
-        "id": "1",
-        "username": "exampleuser",
-        "name": "Joe Example",
-        "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
+        "id": "",
+        "username": "",
+        "name": "",
+        "profile": ``
       }
     });
     console.log(props.selectedPhoto.similar_photos)
@@ -61,6 +62,7 @@ const PhotoDetailsModal = (props) => {
 
   }, [props.selectedPhoto]);
 
+
   return (
     <div className="photo-details-modal" hidden={props.selectedPhoto.id < 0}>
       <div className='photo-details-modal__top-bar'>
@@ -70,7 +72,7 @@ const PhotoDetailsModal = (props) => {
       </div>
 
       <div className="photo-details-modal__header">
-        <PhotoFavButton />
+        <PhotoFavButton id={props.selectedPhoto.id} favourites={props.favourites} setFavourite={props.setFavourite} />
         <img className="photo-details-modal__image" src={props.selectedPhoto.urls.full} />
         <div className="photo-details-modal__photographer-details">
           <img className="photo-details-modal__photographer-profile" src={props.selectedPhoto.user.profile} />
@@ -79,7 +81,7 @@ const PhotoDetailsModal = (props) => {
         </div>
         <div>Similar Photos</div>
         <div className='photo-details-modal__top-bar'>
-          <PhotoList photos={similarPhotosList} />
+          <PhotoList photos={similarPhotosList} favourites={props.favourites} setFavourite={props.setFavourite} />
         </div>
       </div>
     </div>
