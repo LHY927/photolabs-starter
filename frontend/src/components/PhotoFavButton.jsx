@@ -17,11 +17,11 @@ function PhotoFavButton(props) {
       // If currently selected, remove the id from favourites
       props.setFavourite(props.favourites.filter(item => item !== props.id));
     }
-    console.log(props.favourites)
+    //console.log(props.favourites)
   }
 
   useEffect(() => {
-    console.log(props.favourites.indexOf(props.id))
+    //console.log(props.favourites.indexOf(props.id))
     if (props.favourites != undefined) {
       if (props.favourites.indexOf(props.id) > 0) {
         setSelected(true);
