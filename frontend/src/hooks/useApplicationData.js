@@ -50,7 +50,17 @@ const useApplicationData = () => {
 
     // Action to update favorite photo IDs
     const updateToFavPhotoIds = photoId => {
-      console.log("update photo")
+      if(state.favPhotoIds.includes(photoId)){
+        setState(prev => ({
+          ...prev,
+          favPhotoIds: state.favPhotoIds.filter(id => id !== photoId)
+        }));
+      }else{
+        setState(prev => ({
+          ...prev,
+          favPhotoIds: [...state.favPhotoIds, photoId]
+        }));
+      }
     };
 
     // Action to close the photo details modal
