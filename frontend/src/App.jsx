@@ -16,8 +16,8 @@ const App = () => {
 
   return (
     < div className="App" >
-      < HomeRoute setSelectedPhoto={onPhotoSelect} favourites={state.favPhotoIds} setFavourite={updateToFavPhotoIds} />
-      < PhotoDetailsModal onClosePhotoDetailsModal={onClosePhotoDetailsModal} setSelectedPhoto={onPhotoSelect} state={state} setFavourite={updateToFavPhotoIds} />
+      < HomeRoute photos={state.photos} setSelectedPhoto={onPhotoSelect} favourites={state.favPhotoIds} setFavourite={updateToFavPhotoIds} />
+      < PhotoDetailsModal photos={state.photos} onClosePhotoDetailsModal={onClosePhotoDetailsModal} setSelectedPhoto={onPhotoSelect} state={state} setFavourite={updateToFavPhotoIds} />
     </div >
   )
 }

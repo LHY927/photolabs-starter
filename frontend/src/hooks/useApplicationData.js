@@ -1,5 +1,4 @@
 import React, {useEffect, useReducer} from "react";
-import photos from "mocks/photos";
 
 const useApplicationData = () => {
     const [state, dispatch] = useReducer(reducer, {
@@ -39,7 +38,7 @@ const useApplicationData = () => {
           });
         case ACTIONS.SET_PHOTO_DATA:
           return ({ ...state, 
-            photos: photos, 
+            photos: action.photoData, 
             selectedPhoto: {
               "id": "-1",
               "location": {
@@ -76,9 +75,9 @@ const useApplicationData = () => {
     }
 
     // Function to load initial data
-    const loadInitialData = async () => {
+    const loadInitialData = async (photoData) => {
       try {
-        dispatch({type: ACTIONS.SET_PHOTO_DATA})
+        dispatch({type: ACTIONS.SET_PHOTO_DATA, photoData: photoData})
       } catch (error) {
         console.error('Failed to load initial data:', error);
       }
@@ -86,13 +85,19 @@ const useApplicationData = () => {
 
     // Use effect to load data on mount
     useEffect(() => {
-      loadInitialData();
+      fetch('http://localhost:8001/api/photos')
+     .then(res => res.json())
+     .then(photoData => {loadInitialData(photoData)})
     }, []);
 
     // Action to set a photo as selected
     const onPhotoSelect = photoId => {
       if(state.photos.find(photo => photo.id === photoId)){
         dispatch({type: ACTIONS.SELECT_PHOTO, photoId: photoId});
+      }else{
+        throw new Error(
+          `Photo ID does not exist: ${photoId}`
+        );
       }
     };
 
