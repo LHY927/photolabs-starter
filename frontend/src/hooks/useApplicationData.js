@@ -131,11 +131,18 @@ const useApplicationData = () => {
       dispatch({type: ACTIONS.DISPLAY_PHOTO_DETAILS});
     };
 
+    const onClickTopic = (topicId) => {
+      fetch('http://localhost:8001/api/topics/photos/' + topicId)
+     .then(res => res.json())
+     .then(data => {console.log(data)})
+    }
+
     return {
       state,
       onPhotoSelect,
       updateToFavPhotoIds,
       onClosePhotoDetailsModal,
+      onClickTopic,
     };
 }
 

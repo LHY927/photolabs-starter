@@ -12,11 +12,12 @@ const App = () => {
     onPhotoSelect,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
+    onClickTopic,
   } = useApplicationData();
 
   return (
     < div className="App" >
-      < HomeRoute state={state} setSelectedPhoto={onPhotoSelect} setFavourite={updateToFavPhotoIds} />
+      < HomeRoute state={state} onClickTopic={onClickTopic} setSelectedPhoto={onPhotoSelect} setFavourite={updateToFavPhotoIds} />
       < PhotoDetailsModal photos={state.photos} onClosePhotoDetailsModal={onClosePhotoDetailsModal} setSelectedPhoto={onPhotoSelect} state={state} setFavourite={updateToFavPhotoIds} />
     </div >
   )

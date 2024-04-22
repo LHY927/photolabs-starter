@@ -5,7 +5,7 @@ import TopicListItem from "./TopicListItem";
 
 const TopicList = (props) => {
   const topics = props.topics.map((topic, index) =>
-    <TopicListItem key={topic.id} topicDetails={topic} />
+    <TopicListItem key={topic.id} topicDetails={topic} onClickTopic={props.onClickTopic} />
   );
 
   return (
