@@ -6,31 +6,18 @@ import '../styles/PhotoFavButton.scss';
 function PhotoFavButton(props) {
   const [selected, setSelected] = useState(false);
   const handleClick = () => {
-    if (props.id < 0) {
+    if (props.photoId < 0) {
       return;
     }
-    props.setFavourite(props.id);
-    //setSelected(!selected);
-    // if (!selected) {
-    //   // If currently not selected, add the id to favourites
-    //   props.setFavourite([...props.favourites, props.id]);
-    // } else {
-    //   // If currently selected, remove the id from favourites
-    //   props.setFavourite(props.favourites.filter(item => item !== props.id));
-    // }
-    //console.log(props.favourites)
+    props.setFavourite(props.photoId);
   }
 
   useEffect(() => {
     if (props.favourites != undefined) {
-      console.log(props.favourites)
-      console.log(props.id)
-      console.log(props.favourites.indexOf(props.id))
-      if (props.favourites.indexOf(props.id) >= 0) {
+      if (props.favourites.indexOf(props.photoId) >= 0) {
         console.log("get true")
         setSelected(true);
       } else {
-        console.log("get false")
         setSelected(false);
       }
     }

@@ -72,7 +72,7 @@ const PhotoDetailsModal = (props) => {
       </div>
 
       <div className="photo-details-modal__header">
-        <PhotoFavButton id={props.selectedPhoto.id} favourites={props.favourites} setFavourite={props.setFavourite} />
+        <PhotoFavButton photoId={props.selectedPhoto.id} favourites={props.favourites} setFavourite={props.setFavourite} />
         <img className="photo-details-modal__image" src={props.selectedPhoto.urls.full} />
         <div className="photo-details-modal__photographer-details">
           <img className="photo-details-modal__photographer-profile" src={props.selectedPhoto.user.profile} />

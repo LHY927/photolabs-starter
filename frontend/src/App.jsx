@@ -36,7 +36,7 @@ const App = () => {
   return (
     < div className="App" >
       < HomeRoute setSelectedPhoto={setSelectedPhoto} favourites={state.favPhotoIds} setFavourite={updateToFavPhotoIds} />
-      < PhotoDetailsModal setSelectedPhoto={setSelectedPhoto} selectedPhoto={selectedPhoto} favourites={state.favPhotoId} setFavourite={updateToFavPhotoIds} />
+      < PhotoDetailsModal setSelectedPhoto={setSelectedPhoto} selectedPhoto={selectedPhoto} favourites={state.favPhotoIds} setFavourite={updateToFavPhotoIds} />
     </div >
   )
 }
