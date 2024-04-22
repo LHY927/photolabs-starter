@@ -3,6 +3,7 @@ import React, {useEffect, useReducer} from "react";
 const useApplicationData = () => {
     const [state, dispatch] = useReducer(reducer, {
       photos: [],
+      topics: [],
       selectedPhoto: {
         "id": "-1",
         "location": {
@@ -58,7 +59,9 @@ const useApplicationData = () => {
           },
         });
         case ACTIONS.SET_TOPIC_DATA:
-          return "SET_TOPIC_DATA";
+          return ({ ...state, 
+            topics: action.topicData, 
+          });
         case ACTIONS.SELECT_PHOTO:
           return ({
             ...state,
@@ -74,12 +77,21 @@ const useApplicationData = () => {
       }
     }
 
-    // Function to load initial data
-    const loadInitialData = async (photoData) => {
+    // Function to load initial photo data
+    const loadPhotoData = async (photoData) => {
       try {
         dispatch({type: ACTIONS.SET_PHOTO_DATA, photoData: photoData})
       } catch (error) {
-        console.error('Failed to load initial data:', error);
+        console.error('Failed to load photo data:', error);
+      }
+    };
+
+    // Function to load initial topics data
+    const loadTopicData = async (topicData) => {
+      try {
+        dispatch({type: ACTIONS.SET_TOPIC_DATA, topicData: topicData})
+      } catch (error) {
+        console.error('Failed to load topic data:', error);
       }
     };
 
@@ -87,7 +99,11 @@ const useApplicationData = () => {
     useEffect(() => {
       fetch('http://localhost:8001/api/photos')
      .then(res => res.json())
-     .then(photoData => {loadInitialData(photoData)})
+     .then(photoData => {loadPhotoData(photoData)})
+
+     fetch('http://localhost:8001/api/topics')
+     .then(res => res.json())
+     .then(topicData => {loadTopicData(topicData)})
     }, []);
 
     // Action to set a photo as selected
