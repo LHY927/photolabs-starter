@@ -4,7 +4,23 @@ import photos from "mocks/photos";
 const useApplicationData = () => {
     const [state, setState] = useState({
       photos: [],
-      selectedPhoto: null,
+      selectedPhoto: {
+        "id": "-1",
+        "location": {
+          "city": "",
+          "country": ""
+        },
+        "urls": {
+          "full": ``,
+          "regular": ``
+        },
+        "user": {
+          "id": "",
+          "username": "",
+          "name": "",
+          "profile": ``
+        }
+    },
       favPhotoIds: [],
       isPhotoDetailsModalOpen: false,
     });
@@ -12,24 +28,23 @@ const useApplicationData = () => {
     // Function to load initial data
     const loadInitialData = async () => {
       try {
-        const { data } = photos;
         setState(prev => ({ ...prev, 
-          photos: data, 
+          photos: photos, 
           selectedPhoto: {
             "id": "-1",
             "location": {
-            "city": "Montreal",
-            "country": "Canada"
+              "city": "",
+              "country": ""
             },
             "urls": {
-            "full": `${process.env.PUBLIC_URL}/Image-1-Full.jpeg`,
-            "regular": `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`
+              "full": ``,
+              "regular": ``
             },
             "user": {
-            "id": "1",
-            "username": "exampleuser",
-            "name": "Joe Example",
-            "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
+              "id": "",
+              "username": "",
+              "name": "",
+              "profile": ``
             }
         },
       }));
@@ -45,7 +60,11 @@ const useApplicationData = () => {
 
     // Action to set a photo as selected
     const onPhotoSelect = photoId => {
-      console.log("select photo");
+      setState(prev => ({
+        ...prev,
+        selectedPhoto: prev.photos.find(photo => photo.id === photoId),
+        isPhotoDetailsModalOpen: true
+      }));
     };
 
     // Action to update favorite photo IDs
@@ -65,7 +84,7 @@ const useApplicationData = () => {
 
     // Action to close the photo details modal
     const onClosePhotoDetailsModal = () => {
-      console.log("close for photo")
+      setState(prev => ({ ...prev, isPhotoDetailsModalOpen: false }));
     };
 
     return {

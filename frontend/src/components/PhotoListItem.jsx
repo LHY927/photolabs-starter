@@ -5,8 +5,7 @@ import PhotoFavButton from "../components/PhotoFavButton.jsx";
 
 const PhotoListItem = (props) => {
   const handleClick = () => {
-    console.log(props.photoDetails.id);
-    props.setSelectedPhoto(props.photoDetails);
+    props.setSelectedPhoto(props.photoDetails.id);
   }
 
   return (

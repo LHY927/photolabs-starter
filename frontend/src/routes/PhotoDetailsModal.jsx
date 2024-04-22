@@ -27,57 +27,32 @@ let similarPhotosList = [{
 }];
 
 const PhotoDetailsModal = (props) => {
-  const handleClickClose = () => {
-    //On close, set a -1 to the props to hide the modal
-    props.setSelectedPhoto({
-      "id": "-1",
-      "location": {
-        "city": "",
-        "country": ""
-      },
-      "urls": {
-        "full": ``,
-        "regular": ``
-      },
-      "user": {
-        "id": "",
-        "username": "",
-        "name": "",
-        "profile": ``
-      }
-    });
-    console.log(props.selectedPhoto.similar_photos)
-  }
-
   useMemo(() => {
-    if (props.selectedPhoto.id > 0) {
-      similarPhotosList = [];
-      for (const index in props.selectedPhoto.similar_photos) {
-        similarPhotosList.push(props.selectedPhoto.similar_photos[index]);
+    if (props.state.selectedPhoto != undefined) {
+      if (props.state.selectedPhoto.id > 0) {
+        similarPhotosList = [];
+        for (const index in props.state.selectedPhoto.similar_photos) {
+          similarPhotosList.push(props.state.selectedPhoto.similar_photos[index]);
+        }
       }
-
-      console.log(photos)
-      console.log(similarPhotosList)
     }
-
-  }, [props.selectedPhoto]);
-
+  }, [props.state.selectedPhoto]);
 
   return (
-    <div className="photo-details-modal" hidden={props.selectedPhoto.id < 0}>
+    <div className="photo-details-modal" hidden={!props.state.isPhotoDetailsModalOpen}>
       <div className='photo-details-modal__top-bar'>
-        <button className="photo-details-modal__close-button" onClick={handleClickClose} >
+        <button className="photo-details-modal__close-button" onClick={props.onClosePhotoDetailsModal} >
           <img src={closeSymbol} alt="close symbol" />
         </button>
       </div>
 
       <div className="photo-details-modal__header">
-        <PhotoFavButton photoId={props.selectedPhoto.id} favourites={props.favourites} setFavourite={props.setFavourite} />
-        <img className="photo-details-modal__image" src={props.selectedPhoto.urls.full} />
+        <PhotoFavButton photoId={props.state.selectedPhoto.id} favourites={props.state.favourites} setFavourite={props.setFavourite} />
+        <img className="photo-details-modal__image" src={props.state.selectedPhoto.urls.full} />
         <div className="photo-details-modal__photographer-details">
-          <img className="photo-details-modal__photographer-profile" src={props.selectedPhoto.user.profile} />
-          <div className="photo-details-modal__photographer-location">{props.selectedPhoto.location.city}, {props.selectedPhoto.location.country}</div>
-          <div className="photo-details-modal__photographer-info">{props.selectedPhoto.user.username}</div>
+          <img className="photo-details-modal__photographer-profile" src={props.state.selectedPhoto.user.profile} />
+          <div className="photo-details-modal__photographer-location">{props.state.selectedPhoto.location.city}, {props.state.selectedPhoto.location.country}</div>
+          <div className="photo-details-modal__photographer-info">{props.state.selectedPhoto.user.username}</div>
         </div>
         <div>Similar Photos</div>
         <div className='photo-details-modal__top-bar'>
