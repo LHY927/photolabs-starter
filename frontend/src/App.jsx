@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
 
 const App = () => {
   const [favourites, setFavourite] = useState([]);
@@ -25,9 +26,16 @@ const App = () => {
     }
   });
 
+  const {
+    state,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
+
   return (
     < div className="App" >
-      < HomeRoute setSelectedPhoto={setSelectedPhoto} favourites={favourites} setFavourite={setFavourite} />
+      < HomeRoute setSelectedPhoto={setSelectedPhoto} favourites={state.favPhotoIds} setFavourite={updateToFavPhotoIds} />
       < PhotoDetailsModal setSelectedPhoto={setSelectedPhoto} selectedPhoto={selectedPhoto} favourites={favourites} setFavourite={setFavourite} />
     </div >
   )
