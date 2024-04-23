@@ -108,7 +108,6 @@ const useApplicationData = () => {
 
     // Action to set a photo as selected
     const onPhotoSelect = photoId => {
-      console.log("selected" + photoId)
       if(state.photos.find(photo => photo.id === photoId)){
         dispatch({type: ACTIONS.SELECT_PHOTO, photoId: photoId});
       }else{
@@ -136,7 +135,13 @@ const useApplicationData = () => {
     const onClickTopic = (topicId) => {
       fetch('http://localhost:8001/api/topics/photos/' + topicId)
      .then(res => res.json())
-     .then(data => {console.log(data)})
+     .then(data => {
+        try {
+            dispatch({type: ACTIONS.SET_PHOTO_DATA, photoData: data})
+        } catch (error) {
+            console.error('Failed to load photo data:', error);
+        }
+      })
     }
 
     return {
