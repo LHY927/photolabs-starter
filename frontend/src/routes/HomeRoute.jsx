@@ -9,7 +9,7 @@ const HomeRoute = (props) => {
   return (
     <div className="home-route">
       < TopNavigation topics={props.state.topics} onClickTopic={props.onClickTopic} favourites={props.state.favPhotoIds} />
-      < PhotoList photos={props.state.photos} setSelectedPhoto={props.setSelectedPhoto} favourites={props.state.favourites} setFavourite={props.setFavourite} />
+      < PhotoList photos={props.state.photos} setSelectedPhoto={props.setSelectedPhoto} favourites={props.state.favPhotoIds} setFavourite={props.setFavourite} />
     </div >
   );
 };

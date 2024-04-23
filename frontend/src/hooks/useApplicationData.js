@@ -108,6 +108,7 @@ const useApplicationData = () => {
 
     // Action to set a photo as selected
     const onPhotoSelect = photoId => {
+      console.log("selected" + photoId)
       if(state.photos.find(photo => photo.id === photoId)){
         dispatch({type: ACTIONS.SELECT_PHOTO, photoId: photoId});
       }else{
@@ -119,6 +120,7 @@ const useApplicationData = () => {
 
     // Action to update favorite photo IDs
     const updateToFavPhotoIds = photoId => {
+      console.log(photoId)
       if(state.favPhotoIds.includes(photoId)){
         dispatch({type: ACTIONS.FAV_PHOTO_REMOVED, photoId: photoId});
       }else{
