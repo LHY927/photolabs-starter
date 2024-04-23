@@ -5,20 +5,20 @@ const useApplicationData = () => {
       photos: [],
       topics: [],
       selectedPhoto: {
-        "id": "-1",
+        "id": null,
         "location": {
-          "city": "",
-          "country": ""
+          "city": null,
+          "country": null
         },
         "urls": {
-          "full": ``,
-          "regular": ``
+          "full": null,
+          "regular": null
         },
         "user": {
-          "id": "",
-          "username": "",
-          "name": "",
-          "profile": ``
+          "id": null,
+          "username": null,
+          "name": null,
+          "profile": null
         }
     },
       favPhotoIds: [],
@@ -77,7 +77,6 @@ const useApplicationData = () => {
       }
     }
 
-    // Function to load initial photo data
     const loadPhotoData = async (photoData) => {
       try {
         dispatch({type: ACTIONS.SET_PHOTO_DATA, photoData: photoData})
@@ -86,7 +85,6 @@ const useApplicationData = () => {
       }
     };
 
-    // Function to load initial topics data
     const loadTopicData = async (topicData) => {
       try {
         dispatch({type: ACTIONS.SET_TOPIC_DATA, topicData: topicData})
@@ -95,7 +93,6 @@ const useApplicationData = () => {
       }
     };
 
-    // Use effect to load data on mount
     useEffect(() => {
       fetch('http://localhost:8001/api/photos')
      .then(res => res.json())
@@ -106,7 +103,6 @@ const useApplicationData = () => {
      .then(topicData => {loadTopicData(topicData)})
     }, []);
 
-    // Action to set a photo as selected
     const onPhotoSelect = photoId => {
       if(state.photos.find(photo => photo.id === photoId)){
         dispatch({type: ACTIONS.SELECT_PHOTO, photoId: photoId});
@@ -117,7 +113,6 @@ const useApplicationData = () => {
       }
     };
 
-    // Action to update favorite photo IDs
     const updateToFavPhotoIds = photoId => {
       console.log(photoId)
       if(state.favPhotoIds.includes(photoId)){
@@ -127,7 +122,6 @@ const useApplicationData = () => {
       }
     };
 
-    // Action to close the photo details modal
     const onClosePhotoDetailsModal = () => {
       dispatch({type: ACTIONS.DISPLAY_PHOTO_DETAILS});
     };
